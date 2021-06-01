@@ -19,6 +19,15 @@ p_wicket =0
 
 # all functions starts from here
 
+
+def recent_score():
+	logs = open("player.txt")
+	print(logs.read())
+
+
+
+
+
 def match_result():
 	# which run is big function
 	if comp_rn < plr_rn:
@@ -29,6 +38,11 @@ def match_result():
 			print("\nMatch draw 😑😑 \n")
 	else:
 			print("An error occurred!")
+	player = open("player.txt", "a")
+	#storing the player name and score after opening this file
+	player.write(f"Player name : {nm.capitalize()}. \n Computer score: {comp_rn} & Player runs are {plr_rn} !\n")
+	player.close()
+	time.sleep(1.1)
 
 def ts():
 	a = random.choice(ts_lst)
@@ -60,6 +74,7 @@ def plr_bat(btt):
 		print(f"Computer choosen {c_choice} You choose {btt} \nYour run is {plr_rn}.")
 	else:
 		print(f"Error!! You entered {btt}.")
+		
 	
 
 # player bolling function
@@ -82,7 +97,7 @@ def plr_boll(bll):
 
 # all functions ends here
 
-print("Press 1 for Head,\nPress 2 for Tail.")
+print("Press 1 for Head,\nPress 2 for Tail. \nPress 3 to see recent scores! ")
 
 ts_inpt = int(input("Enter your choice : "))
 
@@ -90,8 +105,13 @@ if ts_inpt==1:
 	print("You choosen Head.")
 elif ts_inpt==2:
 	print("You choosen Tail.")
+elif ts_inpt==3:
+	recent_score()
+	print("\nBy default it chooses Tail!")
 else:
 	print("Error! Check your input.")
+	time.sleep(1)
+
 
 ts_usr = int(input("Let's toss: "))
 
@@ -158,13 +178,14 @@ elif ts_rslt == 0:
 	#programe will choose bat of boll
 	rand_bt_bl = rand_bt_bl()
 	print(f"Computer choosed {rand_bt_bl}. ")
-	print(rand_bt_bl)
+	#print(rand_bt_bl)
 	# if player lose the toss
 	if rand_bt_bl == "bat":
 		while c_wicket <2:
 			plr_boll(int(input("Enter choice: ")))
 		print(f"\nComputer''s total run is {comp_rn}!!")
 		print(f"\nComputer gave you {comp_rn + 1} runs target.")
+		time.sleep(0.4)
 		# let the player batting
 		while plr_rn < comp_rn and wicket < 2:
 			plr_bat(int(input("Let's hit the boll ⚾: ")))
@@ -178,6 +199,7 @@ elif ts_rslt == 0:
 			plr_bat(int(input("Enter choice: ")))
 			
 		print(f"Computer have to reach  {plr_rn + 1} runs to win.")
+		time.sleep(0.4)
 		
 		#computer boll
 		while c_wicket < 2 and comp_rn <= plr_rn:
@@ -188,3 +210,10 @@ elif ts_rslt == 0:
 		
 
 print("Thanks for playing this game\nHope you enjoyed this game!!\n\n")
+
+
+time.sleep(1)
+print("Good bye…")
+time.sleep(0.8)
+print("Exiting…")
+time.sleep(0.9)
